@@ -1,6 +1,6 @@
 /* MySQL Basics Assignment */
 
-/* 1. Create a table called employees with the following structure
+/* Q1. Create a table called employees with the following structure
  emp_id (integer, should not be NULL and should be a primary key)
  emp_name (text, should not be NULL)
  age (integer, should have a check constraint to ensure the age is at least 18)
@@ -18,7 +18,7 @@
 
 --
 
- /* 2. Explain the purpose of constraints and how they help maintain data integrity in a database. Provide examples of common types of constraints */
+ /* Q2. Explain the purpose of constraints and how they help maintain data integrity in a database. Provide examples of common types of constraints */
  
  -- Constraints in a database are rules applied to table columns that ensure the accuracy, reliability, and consistency of the data stored. They act like safeguards, preventing invalid or inconsistent data from being entered, which helps maintain **data integrity**. --
 
@@ -72,7 +72,7 @@
 
 ---
 
-/* 3.Why would you apply the NOT NULL constraint to a column? Can a primary key contain NULL values? Justify your answer. */
+/* Q3.Why would you apply the NOT NULL constraint to a column? Can a primary key contain NULL values? Justify your answer. */
 
 Good question — let’s break it down clearly:
 
@@ -113,7 +113,7 @@ Here’s why:
      
 ---
 
- /* 4. Explain the steps and SQL commands used to add or remove constraints on an existing table. Provide an example for both adding and removing a constraint. */
+ /* Q4. Explain the steps and SQL commands used to add or remove constraints on an existing table. Provide an example for both adding and removing a constraint. */
  
  Got it — let’s go step by step.
 
@@ -173,7 +173,7 @@ Now the `email` column can have duplicates.
 
 ---
 
-/* 5. Explain the consequences of attempting to insert, update, or delete data in a way that violates constraints. Provide an example of an error message that might occur when violating a constraint. */
+/* Q5. Explain the consequences of attempting to insert, update, or delete data in a way that violates constraints. Provide an example of an error message that might occur when violating a constraint. */
 
 ## **Consequences of Violating Constraints**
 
@@ -238,7 +238,7 @@ Error messages vary by database system, but here are some common ones:
 
 ---
 
- /* 6. You created a products table without constraints as follows: 
+ /* Q6. You created a products table without constraints as follows: 
  CREATE TABLE products (
  product_id INT,
  product_name VARCHAR(50),
@@ -265,7 +265,7 @@ ALTER COLUMN price SET DEFAULT 50.00;
 
 ---
 
- -- 7. You have two tables: Students and Classes. Write a query to fetch the student_name and class_name for each student using an INNER JOIN --
+ -- Q7. You have two tables: Students and Classes. Write a query to fetch the student_name and class_name for each student using an INNER JOIN --
  
 SELECT
     s.student_name,
@@ -275,7 +275,7 @@ FROM
 INNER JOIN
     classes c ON s.class_id = c.class_id;
     
---  8. Consider the following three tables: Orders, Customer and Products.  Write a query that shows all order_id, customer_name, and product_name, ensuring that all products are listed even if they are not associated with an order --
+--  Q8. Consider the following three tables: Orders, Customer and Products.  Write a query that shows all order_id, customer_name, and product_name, ensuring that all products are listed even if they are not associated with an order --
 
 CREATE Table Orders(
 	order_id INT PRIMARY KEY,
@@ -326,7 +326,7 @@ FROM
 LEFT JOIN Orders o ON p.order_id = o.order_id
 WHERE o.order_id IS NULL;
 
-/* 9.Given are the two tables- sales and products. Write a query to find the total sales amount for each product using an INNER JOIN and the SUM() function. */
+/* Q9.Given are the two tables- sales and products. Write a query to find the total sales amount for each product using an INNER JOIN and the SUM() function. */
 
 CREATE Table Sales(
 	sale_id INT PRIMARY KEY,
@@ -357,7 +357,7 @@ INNER JOIN Products p ON s.product_id = p.product_id
 GROUP BY 
     p.product_name;
  
-/* 10. You are given three tables: orders, customers, and order_details. Write a query to display the order_id, customer_name, and the quantity of products ordered by each customer using an INNER JOIN between all three tables. */
+/* Q10. You are given three tables: orders, customers, and order_details. Write a query to display the order_id, customer_name, and the quantity of products ordered by each customer using an INNER JOIN between all three tables. */
 
 CREATE Table Orders(
 	order_id INT PRIMARY KEY,
@@ -402,7 +402,7 @@ INNER JOIN Order_Details od ON o.order_id = od.order_id;
 -- SQL Commands --
 
 
-/* 1-Identify the primary keys and foreign keys in maven movies db. Discuss the differences */
+/* Q1-Identify the primary keys and foreign keys in maven movies db. Discuss the differences */
 
 Ans:- **Maven Movies Database Keys
 
@@ -425,91 +425,91 @@ A foreign key is a column or a set of columns in one table that references the p
 - customer table: store_id (refers to store.store_id), address_id (refers to address.address_id)
 - film table: language_id (refers to language.language_id), original_language_id (refers to language.language_id)
 
-/*2. List all details of actors*/
+/*Q2. List all details of actors*/
 
 SELECT * FROM actor;
 
-/*3. List all customer information from DB*/
+/*Q3. List all customer information from DB*/
 
 SELECT * FROM customer;
 
-/*4. List different countries*/
+/*Q4. List different countries*/
 
 SELECT DISTINCT country FROM country;
 
-/*5 (S). Display all active customers*/
+/*Q5 (S). Display all active customers*/
 
 SELECT * FROM customer WHERE active = 1;
 
-/*6. List rental IDs for customer with ID 1*/
+/*Q6. List rental IDs for customer with ID 1*/
 
 SELECT rental_id FROM rental WHERE customer_id = 1;
 
-/*7. Films whose rental duration > 5*/
+/*Q7. Films whose rental duration > 5*/
 
 SELECT * FROM film WHERE rental_duration > 5;
 
-/*8. Count films with replacement cost > 15 and < 20*/
+/*Q8. Count films with replacement cost > 15 and < 20*/
 
 SELECT COUNT(*) FROM film WHERE replacement_cost > 15 AND replacement_cost < 20;
 
-/*9. Count unique first names of actors*/
+/*Q9. Count unique first names of actors*/
 
 SELECT COUNT(DISTINCT first_name) FROM actor;
 
-/*10. First 10 customer records*/
+/*Q10. First 10 customer records*/
 
 SELECT * FROM customer LIMIT 10;
 
-/*11. First 3 customers whose first name starts with 'A'*/
+/*Q11. First 3 customers whose first name starts with 'A'*/
 
 SELECT * FROM customer WHERE first_name LIKE 'A%' LIMIT 3;
 
-/*12. Names of first 5 movies rated 'R'*/
+/*Q12. Names of first 5 movies rated 'R'*/
 
 SELECT title FROM film WHERE rating = 'R' LIMIT 5;
 
-/*13. Customers whose first name starts with 'A'*/
+/*Q13. Customers whose first name starts with 'A'*/
 
 SELECT * FROM customer WHERE first_name LIKE 'A%';
 
-/*14. Customers whose first name ends with 'a'*/
+/*Q14. Customers whose first name ends with 'a'*/
 
 SELECT * FROM customer WHERE first_name LIKE '%a';
 
-/*15. First 4 cities starting and ending with 'a'*/
+/*Q15. First 4 cities starting and ending with 'a'*/
 
 SELECT city FROM city WHERE city LIKE 'a%a' LIMIT 4;
 
-/*16. Customers whose first name has 'NI' anywhere*/
+/*Q16. Customers whose first name has 'NI' anywhere*/
 
 SELECT * FROM customer WHERE first_name LIKE '%NI%';
 
-/*17. Customers with 'r' in 2nd position*/
+/*Q17. Customers with 'r' in 2nd position*/
 
 SELECT * FROM customer WHERE first_name LIKE '_r%';
 
-/*18. Customers whose name starts with 'a' and length ≥ 5*/
+/*Q18. Customers whose name starts with 'a' and length ≥ 5*/
 
 SELECT * FROM customer WHERE first_name LIKE 'a%' AND LENGTH(first_name) >= 5;
 
-/*19. Customers whose name starts with 'a' and ends with 'o'*/
+/*Q19. Customers whose name starts with 'a' and ends with 'o'*/
 
 SELECT * FROM customer WHERE first_name LIKE 'a%o';
 
-/*20. Films with rating PG or PG-13 (IN operator)*/
+/*Q20. Films with rating PG or PG-13 (IN operator)*/
 
 SELECT * FROM film WHERE rating IN ('PG', 'PG-13');
 
-/*21. Films with length between 50 and 100*/
+/*Q21. Films with length between 50 and 100*/
 
 SELECT * FROM film WHERE length BETWEEN 50 AND 100;
 
-/*22. Top 50 actors (LIMIT)*/
+/*Q22. Top 50 actors (LIMIT)*/
 
 SELECT * FROM actor LIMIT 50;
 
-/*23. Distinct film IDs from inventory*/
+/*Q23. Distinct film IDs from inventory*/
 
 SELECT DISTINCT film_id FROM inventory;
 
@@ -641,7 +641,7 @@ HAVING COUNT(DISTINCT i.store_id) = 2;
 
 -- Windows Function --
 
-/*1. Rank the customers based on the total amount they’ve spent on rentals */
+/*Q1. Rank the customers based on the total amount they’ve spent on rentals */
 
 SELECT c.customer_id, c.first_name, c.last_name,
        SUM(p.amount) AS total_spent,
@@ -650,7 +650,7 @@ FROM customer c
 JOIN payment p ON c.customer_id = p.customer_id
 GROUP BY c.customer_id;
 
-/*2. Calculate the cumulative revenue generated by each film over time. */
+/*Q2. Calculate the cumulative revenue generated by each film over time. */
 
 SELECT f.film_id, f.title, r.rental_date, SUM(p.amount) 
        OVER (PARTITION BY f.film_id ORDER BY r.rental_date) AS cumulative_revenue
@@ -659,7 +659,7 @@ JOIN inventory i ON r.inventory_id = i.inventory_id
 JOIN film f ON i.film_id = f.film_id
 JOIN payment p ON r.rental_id = p.rental_id;
 
-/*3. Determine the average rental duration for each film. */
+/*Q3. Determine the average rental duration for each film. */
 
 SELECT f.film_id, f.title, AVG(r.rental_duration) AS avg_rental_duration
 FROM rental r
@@ -667,7 +667,7 @@ JOIN inventory i ON r.inventory_id = i.inventory_id
 JOIN film f ON i.film_id = f.film_id
 GROUP BY f.film_id;
 
-/*4. Identify the top 3 films in each category based on rental counts. */
+/*Q4. Identify the top 3 films in each category based on rental counts. */
 
 SELECT category_id, title, rental_count
 FROM (
@@ -681,7 +681,7 @@ FROM (
 ) AS sub
 WHERE rn <= 3;
 
-/*5. Calculate the difference in rental counts between each customer’s total rentals and the average rentals across all customers. */
+/*Q5. Calculate the difference in rental counts between each customer’s total rentals and the average rentals across all customers. */
 
 WITH customer_rentals AS (
     SELECT customer_id, COUNT(*) AS total_rentals
@@ -694,7 +694,7 @@ SELECT cr.customer_id, cr.total_rentals, cr.total_rentals - ar.avg_rentals AS di
 FROM customer_rentals cr
 CROSS JOIN avg_rentals ar;
 
-/*6. Find the monthly revenue trend for the entire rental store */
+/*Q6. Find the monthly revenue trend for the entire rental store */
 
 SELECT DATE_FORMAT(r.rental_date, '%Y-%m') AS month, SUM(p.amount) AS monthly_revenue
 FROM rental r
@@ -702,7 +702,7 @@ JOIN payment p ON r.rental_id = p.rental_id
 GROUP BY month
 ORDER BY month;
 
-/* 7. Identify the customers whose total spending falls within the top 20% of all customers. */
+/* Q7. Identify the customers whose total spending falls within the top 20% of all customers. */
 
 SELECT customer_id, first_name, last_name, total_spent
 FROM (
@@ -714,7 +714,7 @@ FROM (
 ) AS ranked
 WHERE percentile_rank = 1;
 
-/* 8. Calculate the running total of rentals per category, ordered by rental count. */
+/* Q8. Calculate the running total of rentals per category, ordered by rental count. */
 
 SELECT category_id, title, COUNT(r.rental_id) AS rentals,
        SUM(COUNT(r.rental_id)) OVER (PARTITION BY category_id ORDER BY COUNT(r.rental_id)) AS running_total
@@ -724,7 +724,7 @@ JOIN inventory i ON f.film_id = i.film_id
 JOIN rental r ON i.inventory_id = r.inventory_id
 GROUP BY category_id, title;
 
-/*9. Find the films rented less than the average rental count for their respective categories. */
+/* Q9. Find the films rented less than the average rental count for their respective categories. */
 
 WITH category_avg AS (
     SELECT c.category_id, AVG(rental_count) AS avg_rentals
@@ -746,7 +746,7 @@ JOIN rental r ON i.inventory_id = r.inventory_id
 GROUP BY f.film_id, c.category_id
 HAVING COUNT(r.rental_id) < (SELECT avg_rentals FROM category_avg WHERE category_id = c.category_id);
 
-/* 10.Identify the top 5 months with the highest revenue and display the revenue generated in each month */
+/* Q10.Identify the top 5 months with the highest revenue and display the revenue generated in each month */
 
 	SELECT month, monthly_revenue
 FROM (
