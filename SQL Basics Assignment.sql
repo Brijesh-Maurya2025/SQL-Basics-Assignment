@@ -74,8 +74,6 @@
 
 /* Q3.Why would you apply the NOT NULL constraint to a column? Can a primary key contain NULL values? Justify your answer. */
 
-Good question — let’s break it down clearly:
-
 ---
 
 ### **Why apply the NOT NULL constraint?**
@@ -115,7 +113,6 @@ Here’s why:
 
  /* Q4. Explain the steps and SQL commands used to add or remove constraints on an existing table. Provide an example for both adding and removing a constraint. */
  
- Got it — let’s go step by step.
 
 When working with **existing tables**, you use the `ALTER TABLE` command to add or remove constraints.
 
